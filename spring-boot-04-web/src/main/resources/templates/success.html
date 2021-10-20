@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>模板引擎</title>
+</head>
+<body>
+<h2>模板引擎</h2>
+<hr/>
+<!-- th:text将获取到的数据写到标签体中 -->
+<p th:text="${name}"></p>
+<!-- 引入公共代码片段    id用#  class用.
+
+th:insert 和 th:replace的区别
+th:insert和th:replace都可以引入片段，两者的区别在于
+th:insert： 保留引入时使用的标签
+th:replace：不保留引入时使用的标签, 将声明片段直接覆盖当前引用标签即下面例子h2标签
+
+
+href,src :        找classpath：src/main/resources/static
+replace,insert :  找classpath: /templates/
+
+
+
+-->
+
+
+<div th:replace="header :: header_common"></div>
+<div th:replace="header :: #header_common_id"></div>
+
+<h2 th:insert="header :: #header_common_id_insert"></h2>
+
+
+</body>
+</html>

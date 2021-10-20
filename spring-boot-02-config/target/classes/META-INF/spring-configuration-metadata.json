@@ -1,0 +1,53 @@
+{
+  "groups": [
+    {
+      "name": "emp",
+      "type": "com.cuit.springboot.bean.Emp",
+      "sourceType": "com.cuit.springboot.bean.Emp"
+    }
+  ],
+  "properties": [
+    {
+      "name": "emp.age",
+      "type": "java.lang.Integer",
+      "sourceType": "com.cuit.springboot.bean.Emp"
+    },
+    {
+      "name": "emp.birthday",
+      "type": "java.util.Date",
+      "sourceType": "com.cuit.springboot.bean.Emp"
+    },
+    {
+      "name": "emp.boss",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.cuit.springboot.bean.Emp"
+    },
+    {
+      "name": "emp.forte",
+      "type": "com.cuit.springboot.bean.Forte",
+      "sourceType": "com.cuit.springboot.bean.Emp"
+    },
+    {
+      "name": "emp.last-name",
+      "type": "java.lang.String",
+      "description": "@Email 测试是否为Email",
+      "sourceType": "com.cuit.springboot.bean.Emp"
+    },
+    {
+      "name": "emp.list",
+      "type": "java.util.List",
+      "sourceType": "com.cuit.springboot.bean.Emp"
+    },
+    {
+      "name": "emp.map",
+      "type": "java.util.Map",
+      "sourceType": "com.cuit.springboot.bean.Emp"
+    },
+    {
+      "name": "emp.salary",
+      "type": "java.lang.Double",
+      "sourceType": "com.cuit.springboot.bean.Emp"
+    }
+  ],
+  "hints": []
+}

@@ -1,0 +1,108 @@
+package com.cuit.springboot.controller;
+
+import com.cuit.springboot.dao.ProviderDao;
+import com.cuit.springboot.entities.Provider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Collection;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * @version JDK  1.8.151
+ * @Author: Mirrors
+ * @Description: Chengdu City
+ *
+ *
+ *
+ * 供应商的控制层
+ */
+
+@Controller
+public class ProviderController {
+
+    Logger logger = LoggerFactory.getLogger(getClass());
+
+     @Autowired
+     ProviderDao providerDao;
+
+
+      // @RequestMapping(value="/providers",method = RequestMethod.GET)
+      @GetMapping("/providers")                //因为getAll用的重载，所以对可传可不传参数进行处理
+      public String list(Map<String,Object>map,@RequestParam(value = "providerName",required = false) String providerName){
+
+          //logger.info("供应商列表查询"+ providerName);
+
+          Collection<Provider> providers = providerDao.getAll(providerName);
+
+          map.put("providers",providers);
+          map.put("providerName",providerName);
+
+
+        //找classpath:/templates/providers/list 默认.html后缀
+        return "provider/list";
+      }
+
+    /**
+     * type=null,进入查看详情页面view.html
+     * type=update，则进入update.html
+     * @param pid   供应商id
+     * @param type
+     * @param map
+     * @return
+     */
+      @GetMapping("/provider/{pid}")
+      public String view(@PathVariable("pid") Integer pid,
+                         //没传值的话默认是view查看操作，传了值是修改复用此查询
+                         @RequestParam(value = "type",defaultValue = "view" )String type,
+                         Map<String,Object>map){
+        logger.info("查询"+pid+"的供应商详细信息");
+        Provider provider = providerDao.getProvider(pid);
+
+        map.put("provider",provider);
+          //return "provider/view";
+          //type=null  则进入view.html   type=update 则进入update.html
+
+        return "provider/"+type;
+    }
+    //修改供应商信息
+    @PutMapping("/provider")
+    public  String update(Provider provider){
+        logger.info("更改供应商信息。。。");
+        //provider.setCreateDate(new Date());
+        //更新
+        providerDao.save(provider);
+
+        return "redirect:providers";
+    }
+
+    //前往添加页面
+    @GetMapping("/provider")
+    public String toAddPage(){
+          return "provider/add";
+    }
+
+    //添加操作
+    @PostMapping("/provider")
+    public String add(Provider provider){
+        logger.info("添加供应商数据"+provider);
+
+        //添加
+        providerDao.save(provider);
+        return "redirect:/providers";
+    }
+
+    //删除供应商
+    @DeleteMapping("/provider/{pid}" )
+    public String delete(@PathVariable("pid")Integer pid){
+          logger.info("删除操作，pid="+pid);
+          providerDao.delete(pid);
+          return "redirect:/providers";
+    }
+
+}

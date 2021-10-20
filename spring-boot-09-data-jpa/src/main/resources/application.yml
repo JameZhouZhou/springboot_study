@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/jpa?serverTimezone=GMT%2B8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+
+#jpa相关配置
+  jpa:
+    hibernate:
+      #会根据映射实体类自动 创建或更新数据表
+      ddl-auto: update
+    #控制台打印sql语句
+    show-sql: true
+    #强调 Hibernate 在创建表时，
+    #默认创建表类型是MyISAM,是非事务安全的，所以无法实现事物回滚; Innodb才可以进行对事物的回滚。
+    database-platform: org.hibernate.dialect.MySQL57Dialect

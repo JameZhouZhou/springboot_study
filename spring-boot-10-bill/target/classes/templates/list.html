@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div align="center">
+    <table border="1">
+        <tr>
+            <th width="10%">用户名</th>
+            <th width="20%">真实姓名</th>
+            <th width="10%">性别</th>
+            <th width="10%">出生日期</th>
+            <th width="10%">用户类型</th>
+            <th width="30%">操作</th>
+        </tr>
+        <tr th:each="u:${pageInfo.list}">
+            <td th:text="${u.username}"></td>
+            <td th:text="${u.realName}"></td>
+            <!--性别：1 女  2 男-->
+            <td th:text="${u.gender == 1 ? '女' : '男'}"></td>
+            <td th:text="${#dates.format(u.birthday, 'yyyy-MM-dd')}"></td>
+            <!--1管理员  2经理  3普通用户-->
+            <td th:text="${u.userType==1 ? '管理员' : (u.userType==2 ? '经理' : '普通用户') }"></td>
+            <td>
+                <a th:href="@{/user/} + ${u.id}" href="view.html"><img th:src="@{/img/read.png}" src="../img/read.png" alt="查看" title="查看"/></a>
+                <a th:href="@{/user/} + ${u.id} +'?type=update'" href="update.html"><img th:src="@{/img/xiugai.png}"  src="../img/xiugai.png" alt="修改" title="修改"/></a>
+                <a th:attr="del_uri=@{/user/}+${u.id}"  href="#" class="delete" ><img th:src="@{/img/schu.png}"  src="../img/schu.png" alt="删除" title="删除"/></a>
+            </td>
+        </tr>
+    </table>
+    <p>当前 <span th:text="${pageInfo.pageNum}"></span> 页,总 <span th:text="${pageInfo.pages}"></span> 页,共 <span th:text="${pageInfo.total}"></span> 条记录</p>
+    <a th:href="@{/getAllUser}">首页</a>
+    <a th:href="@{/getAllUser(pageNum=${pageInfo.hasPreviousPage}?${pageInfo.prePage}:1)}">上一页</a>
+    <a th:href="@{/getAllUser(pageNum=${pageInfo.hasNextPage}?${pageInfo.nextPage}:${pageInfo.pages})}">下一页</a>
+    <a th:href="@{/getAllUser(pageNum=${pageInfo.pages})}">尾页</a>
+</div>
+</body>
+</html>

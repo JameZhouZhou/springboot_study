@@ -1,0 +1,21 @@
+#server:
+#  port: 8088
+
+#emp的配置  yml的面向对象语法
+
+#emp:
+#  last-name: 李四
+#  age: 30
+#  birthday: 1999/7/19
+#  boss: false
+#  salary: 20000
+#  map:
+#    key1: value1
+#    key2: value2
+#  list:
+#    - one
+#    - two
+#    - three
+#  forte:
+#    name: java
+#    time: 8
