@@ -23,14 +23,14 @@ public class HelloController {
     @ResponseBody
     @RequestMapping("/success")
     public String execute() {
-        return "Hello ttjj 1 ";
+        return "Hello ttjj 122 ";
     }
 
 
     @RequestMapping("/execute")
     /**   执行/execute时会put但执行/mengxuegu时直接进入界面     */
     public String success(Map<String, Object> map) {
-        map.put("name", "梦学谷");
+        map.put("name", "111");
 
         //找classpath:/templates/success.html
         return "success";
