@@ -1,0 +1,64 @@
+﻿﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+</head>
+<body>
+
+        <table border="1" id="tab">
+            <thead>
+                <th width="10%">编号</th>
+                <th width="20%">名称</th>
+            </thead>
+            <tbody>
+                <tr th:each="p : ${users}">
+                    <td><input type="text" name="id"  th:value="${p.id}"></td>
+                    <td><input type="text" name="name"  th:value="${p.name}"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button onclick="push()">提交</button>
+<script th:src="@{/webjars/jquery/3.3.1/jquery.js}" src="../js/jquery.js"></script>
+<script >
+    function push() {
+        var tr = $("#tab tr"); // 获取table中每一行内容
+        var result = []; // 数组
+        for (var i = 0; i < tr.length; i++) {// 遍历表格中每一行的内容
+            var tds = $(tr[i]).find("td");
+            if (tds.length > 0) {
+                result.push({
+                    "id" : $(tds[0]).find("input").val(),
+                    "name" : $(tds[1]).find("input").val()
+                })
+            }
+        }
+        // var jsonData = { // json数据
+        //     "userLst" : result
+        // }
+        // console.log(jsonData);
+        // console.log(JSON.stringify(jsonData));
+
+        console.log(result);
+        console.log(JSON.stringify(result));
+        $.ajax({
+            type : "post",
+            url : "user222",
+            contentType : "application/json;charset=UTF-8",
+            // dataType:"json",
+            // data : JSON.stringify(jsonData),  //指定返回数据
+            data : JSON.stringify(result),// 将json数据转化为字符串
+            success : function(msg) {
+
+                console.log("ajax:");
+                console.log(msg)
+                window.location.href="http://localhost:8082/xixi";
+
+            }
+        })
+    }
+
+</script>
+
+</body>
+</html>

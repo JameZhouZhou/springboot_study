@@ -6,7 +6,7 @@ package com.zxy.config;
  * @Description: Chengdu City
  */
 
-public class hehe {
+public class xixi {
     public static void main(String[] args) {
         System.out.println("TMD");
     }

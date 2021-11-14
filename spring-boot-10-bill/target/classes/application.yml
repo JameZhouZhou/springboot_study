@@ -39,4 +39,4 @@ pagehelper:                #分页插件
   support-methods-arguments: true
   params:
 server:
-  port: 8081
+  port: 8082

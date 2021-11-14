@@ -28,7 +28,7 @@
     last : 当前是否为最后一个元素
 
     -->
-    <tr th:each="user,iterStat :${userList}">
+    <tr th:each="user,iterStat :${user1List}">
         <td th:text="${iterStat.count}"></td>
         <td th:text="${user.username}"></td>
         <td th:text="${user.gender==1?'女':'男'}"></td>
@@ -40,15 +40,15 @@
 </table>
 
 <hr/>
-<ul th:each="user :${userList}">
+<ul th:each="user :${user1List}">
     <li th:text="${user.username}"></li>
     <li th:text="${user.gender==1?'女':'男'}"></li>
 </ul>
 
 <hr/>
 下面加not这相反false显示值
-<h3 th:if="not ${#lists.isEmpty(userList)}">th:if判断,如果此文字显示说明有值</h3>
-<h3 th:unless="${#lists.isEmpty(userList)}">th:unless判断,如果此文字显示说明有值</h3>
+<h3 th:if="not ${#lists.isEmpty(user1List)}">th:if判断,如果此文字显示说明有值</h3>
+<h3 th:unless="${#lists.isEmpty(user1List)}">th:unless判断,如果此文字显示说明有值</h3>
 
 <hr/>
 <div th:switch="${sex}">

@@ -30,17 +30,17 @@ public class MySpringMvcConfigurer {
 
                 }
 
-                //添加拦截器
-                 @Override
-                 public void addInterceptors(InterceptorRegistry registry) {
-                    registry.addInterceptor(new LoginHandlerInterceptor())
-                            //指定要拦截的请求 /**表示拦截所有请求
-                            .addPathPatterns("/**")
-                            //排除不需要拦截的请求路径
-                            .excludePathPatterns("/","/index.html","/login")
-                            //springboot2+之后需要将静态资源文件的访问路径也排除
-                            .excludePathPatterns("/css/*","/img/*","/js/*");
-             }
+//                //添加拦截器
+//                 @Override
+//                 public void addInterceptors(InterceptorRegistry registry) {
+//                    registry.addInterceptor(new LoginHandlerInterceptor())
+//                            //指定要拦截的请求 /**表示拦截所有请求
+//                            .addPathPatterns("/**")
+//                            //排除不需要拦截的请求路径
+//                            .excludePathPatterns("/","/index.html","/login")
+//                            //springboot2+之后需要将静态资源文件的访问路径也排除
+//                            .excludePathPatterns("/css/*","/img/*","/js/*");
+//             }
          };
     }
 
